@@ -44,13 +44,19 @@ jobs:
                 release_branch: deployment
                 scheme: semver
                 increment: patch
-            
-            - name: Version Increment
-              uses: reecetech/version-increment@2023.10.2\
+                
+            - name: Build image
+              uses: docker/build-push-action@v2
               with:
-                release_branch: deployment
-                scheme: semver
-                increment: patch
+                push: false
+                tags: "example/application:${{ steps.version.outputs.version }}"
+                context: .
+            # - name: Version Increment
+            #   uses: reecetech/version-increment@2023.10.2\
+            #   with:
+            #     release_branch: deployment
+            #     scheme: semver
+            #     increment: patch
 
     archtest:
         name: Test on Arch
