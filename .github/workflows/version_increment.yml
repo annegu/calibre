@@ -21,12 +21,12 @@ jobs:
                 scheme: semver
                 increment: patch
 
-            - name: Build image
-              uses: docker/build-push-action@v2
-              with:
-                push: true
-                tags: "example/application:${{ steps.version.outputs.version }}"
-                context: .
+            # - name: Build image
+            #   uses: docker/build-push-action@v2
+            #   with:
+            #     push: true
+            #     tags: "example/application:${{ steps.version.outputs.version }}"
+            #     context: .
             
             - run: git tag ${{ steps.version.outputs.version }}
             - run: git push origin --tags
