@@ -38,7 +38,7 @@ jobs:
                   python setup/unix-ci.py test
 
             - name: Get next version
-              uses: reecetech/version-increment@2023.9.3
+              uses: reecetech/version-increment@2023.10.2
               id: version
               with:
                 release_branch: deployment
@@ -47,6 +47,10 @@ jobs:
             
             - name: Version Increment
               uses: reecetech/version-increment@2023.10.2\
+              with:
+                release_branch: deployment
+                scheme: semver
+                increment: patch
 
     archtest:
         name: Test on Arch
