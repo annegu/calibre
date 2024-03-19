@@ -1,9 +1,11 @@
+# https://stackoverflow.com/questions/69343233/github-action-increment-version-on-push-to-main
+# https://github.com/marketplace/actions/version-increment
 name: Version Increment
 
 on:
   push:
     branches:
-      - deployment
+      - release
 
 jobs:
     version:
