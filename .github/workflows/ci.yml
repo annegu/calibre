@@ -12,6 +12,9 @@ jobs:
                 # windows is disabled because webenging is crashing when compiling rapydscript in CI, try re-enabling after next Qt update
                 os: [ubuntu-latest, macos-latest]
         steps:
+            - name: Version Increment
+              uses: reecetech/version-increment@2023.10.2
+              
             - name: Checkout source code
               uses: actions/checkout@v3
               with:
