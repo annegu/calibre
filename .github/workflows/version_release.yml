@@ -1,0 +1,25 @@
+name: Version Increment
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+    version:
+        name: Version Increment
+        runs-on: ubuntu-latest
+        steps: 
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Get next version
+              uses: reecetech/version-increment@2023.10.2
+              id: version
+              with:
+                release_branch: deployment
+                scheme: semver
+                increment: patch
+
+            - run: git tag ${{ steps.version.outputs.version }}
+            - run: git push origin --tags
