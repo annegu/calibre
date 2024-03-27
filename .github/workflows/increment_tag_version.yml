@@ -1,4 +1,4 @@
-name: 
+name: Increment Tag Version
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
     version:
-        name: Version Increment
+        name: Increment Tag Version
         runs-on: ubuntu-latest
         steps: 
             - name: Checkout code
@@ -17,21 +17,10 @@ jobs:
               uses: reecetech/version-increment@2023.10.2
               id: version
               with:
-                release_branch: deployment
+                release_branch: release
                 scheme: semver
                 increment: patch
 
             - run: git tag ${{ steps.version.outputs.version }}
             - run: git push origin --tags
-    tagged-release:
-      name: "Tagged Release"
-      runs-on: "ubuntu-latest"
-  
-      steps:
-        # ci.yml builds and runs tests
-        - uses: "marvinpinto/action-automatic-releases@latest"
-          with:
-            prerelease: false
-            files: |
-              LICENSE.txt
-              *.jar
+    
