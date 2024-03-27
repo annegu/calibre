@@ -1,4 +1,4 @@
-name: Version Increment
+name: 
 
 on:
   push:
@@ -23,3 +23,15 @@ jobs:
 
             - run: git tag ${{ steps.version.outputs.version }}
             - run: git push origin --tags
+    tagged-release:
+      name: "Tagged Release"
+      runs-on: "ubuntu-latest"
+  
+      steps:
+        # ci.yml builds and runs tests
+        - uses: "marvinpinto/action-automatic-releases@latest"
+          with:
+            prerelease: false
+            files: |
+              LICENSE.txt
+              *.jar
